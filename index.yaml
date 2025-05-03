@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  turingpi-llama-cpp:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-05-03T13:57:58.190209085Z"
+    description: A Helm chart for Kubernetes
+    digest: f9907dffcbb8557f0ac5af36ebdcefbee188b68ad1584331c1ba79caad2c485f
+    name: turingpi-llama-cpp
+    type: application
+    urls:
+    - https://github.com/rockofox/helm-llama-cpp/releases/download/turingpi-llama-cpp-0.0.2/turingpi-llama-cpp-0.0.2.tgz
+    version: 0.0.2
+generated: "2025-05-03T13:57:58.190214164Z"
