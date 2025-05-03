@@ -1,0 +1,15 @@
+{{- if and .Values.ingress.enabled .Values.ingress.basicAuth.enabled }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "turingpi-llama-cpp.fullname" . }}-basic-auth
+  labels:
+    {{- include "turingpi-llama-cpp.labels" . | nindent 4 }}
+spec:
+  basicAuth:
+    {{- if .Values.ingress.basicAuth.existingSecret }}
+    secret: {{ .Values.ingress.basicAuth.existingSecret }}
+    {{- else if gt (len .Values.ingress.basicAuth.users) 0 }}
+    secret: {{ include "turingpi-llama-cpp.fullname" . }}-basic-auth
+    {{- end }}
+{{- end }}

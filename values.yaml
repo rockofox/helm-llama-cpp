@@ -45,7 +45,18 @@ service:
 ingress:
   enabled: true
   className: "traefik"
-  annotations:
+  annotations: {}
+  # Basic authentication configuration
+  basicAuth:
+    enabled: false
+    # If you already have a secret with htpasswd data:
+    existingSecret: ""
+    # Or provide users directly (will create a secret)
+    users: []
+    # Example: 
+    # users:
+    #   - "user1:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/"
+    #   - "user2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0"
   hosts:
     - host: llama.turingpi-cluster.local
       paths:

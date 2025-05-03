@@ -18,10 +18,13 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "turingpi-llama-cpp.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
   annotations:
+    {{- if and .Values.ingress.basicAuth.enabled }}
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ include "turingpi-llama-cpp.fullname" . }}-basic-auth@kubernetescrd
+    {{- end }}
+    {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
-  {{- end }}
+    {{- end }}
 spec:
   {{- if and .Values.ingress.className (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion) }}
   ingressClassName: {{ .Values.ingress.className }}

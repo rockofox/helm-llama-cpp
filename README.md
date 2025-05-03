@@ -20,3 +20,26 @@ for `turingpi-cluster.local` Make sure to update your `/etc/hosts` file so the n
 ```
 10.0.0.70 turing-cluster turing-cluster.local llama.turingpi-cluster llama.turingpi-cluster.local
 ```
+
+## Basic Authentication
+
+You can enable basic authentication for your deployment by adding the following to your values:
+
+```yaml
+ingress:
+  basicAuth:
+    enabled: true
+    # Option 1: Reference an existing secret with htpasswd formatted data
+    existingSecret: "my-existing-secret"
+    
+    # Option 2: Provide users directly (will create a secret)
+    users:
+      - "user1:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/"
+      - "user2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0"
+```
+
+To generate password hashes for the users list, you can use:
+
+```shell
+htpasswd -nb user password
+```
