@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "turingpi-llama-cpp.fullname" . }}
+  name: {{ include "llama-cpp.fullname" . }}
   labels:
-    {{- include "turingpi-llama-cpp.labels" . | nindent 4 }}
+    {{- include "llama-cpp.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "turingpi-llama-cpp.selectorLabels" . | nindent 6 }}
+      {{- include "llama-cpp.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -16,7 +16,7 @@ spec:
               {{- toYaml . | nindent 8 }}
             {{- end }}
       labels:
-          {{- include "turingpi-llama-cpp.labels" . | nindent 8 }}
+          {{- include "llama-cpp.labels" . | nindent 8 }}
           {{- with .Values.podLabels }}
           {{- toYaml . | nindent 8 }}
           {{- end }}
