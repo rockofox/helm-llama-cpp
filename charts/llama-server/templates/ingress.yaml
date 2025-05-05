@@ -19,8 +19,8 @@ metadata:
   labels:
     {{- include "turingpi-llama-cpp.labels" . | nindent 4 }}
   annotations:
-    {{- if and .Values.ingress.basicAuth.enabled }}
-    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ include "turingpi-llama-cpp.fullname" . }}-basic-auth@kubernetescrd
+    {{- if .Values.ingress.basicAuth.enabled }}
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-basic-auth@kubernetescrd
     {{- end }}
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
