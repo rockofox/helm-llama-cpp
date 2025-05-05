@@ -1,6 +1,6 @@
 apiVersion: v2
-name: turingpi-llama-cpp
-description: A Helm chart for Kubernetes
+name: llama-cpp
+description: A Helm chart for deploying a llama.cpp server
 
 # A chart can be either an 'application' or a 'library' chart.
 #

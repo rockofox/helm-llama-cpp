@@ -1,4 +1,4 @@
-# Default values for turingpi-llama-cpp.
+# Default values for llama-cpp.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -58,7 +58,7 @@ ingress:
     #   - "user1:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/"
     #   - "user2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0"
   hosts:
-    - host: llama.turingpi-cluster.local
+    - host: llama.cluster.local
       paths:
         - path: /
           pathType: ImplementationSpecific

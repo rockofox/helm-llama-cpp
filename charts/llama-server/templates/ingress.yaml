@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "turingpi-llama-cpp.fullname" . -}}
+{{- $fullName := include "llama-cpp.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
 {{- if and .Values.ingress.className (not (semverCompare ">=1.18-0" .Capabilities.KubeVersion.GitVersion)) }}
   {{- if not (hasKey .Values.ingress.annotations "kubernetes.io/ingress.class") }}
@@ -17,7 +17,7 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "turingpi-llama-cpp.labels" . | nindent 4 }}
+    {{- include "llama-cpp.labels" . | nindent 4 }}
   annotations:
     {{- if .Values.ingress.basicAuth.enabled }}
     traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-basic-auth@kubernetescrd
