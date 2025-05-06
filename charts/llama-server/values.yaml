@@ -46,9 +46,9 @@ ingress:
   enabled: true
   className: "traefik"
   annotations: {}
-  # Basic authentication configuration
+  # Authentication configuration
+  authType: "none" # Options: "basicAuth", "apiKey" (requires Septima/traefik-api-key-auth middleware), "none"
   basicAuth:
-    enabled: false
     # If you already have a secret with htpasswd data:
     existingSecret: ""
     # Or provide users directly (will create a secret)
@@ -57,6 +57,10 @@ ingress:
     # users:
     #   - "user1:$apr1$H6uskkkW$IgXLP6ewTrSuBkTrqE8wj/"
     #   - "user2:$apr1$d9hr9HBB$4HxwgUir3HP4EsggP/QNo0"
+  apiKey:
+    keys:
+      - "sample-key"
+
   hosts:
     - host: llama.cluster.local
       paths:

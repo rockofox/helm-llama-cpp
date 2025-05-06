@@ -1,0 +1,31 @@
+{{- if and .Values.ingress.enabled (not (eq .Values.ingress.authType "none")) }}
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "llama-cpp.fullname" . }}-auth
+  labels:
+    {{- include "llama-cpp.labels" . | nindent 4 }}
+spec:
+  {{- if eq .Values.ingress.authType "basicAuth" }}
+  basicAuth:
+    {{- if .Values.ingress.basicAuth.existingSecret }}
+    secret: {{ .Values.ingress.basicAuth.existingSecret }}
+    {{- else if gt (len .Values.ingress.basicAuth.users) 0 }}
+    secret: {{ include "llama-cpp.fullname" . }}-basic-auth
+    {{- end }}
+  {{- else if eq .Values.ingress.authType "apiKey" }}
+  plugin:
+    traefik-api-key-auth:
+      authenticationHeader: false
+      bearerHeader: true
+      bearerHeaderName: Authorization
+      queryParam: false
+      pathSegment: false
+      permissiveMode: false
+      removeHeadersOnSuccess: true
+      keys: 
+        {{- range .Values.ingress.apiKey.keys }}
+        - {{ . | quote }}
+        {{- end }}
+  {{- end }}
+{{- end }}

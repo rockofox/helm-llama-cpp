@@ -19,8 +19,8 @@ metadata:
   labels:
     {{- include "llama-cpp.labels" . | nindent 4 }}
   annotations:
-    {{- if .Values.ingress.basicAuth.enabled }}
-    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-basic-auth@kubernetescrd
+    {{- if not (eq .Values.ingress.authType "none") }}
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ $fullName }}-auth@kubernetescrd
     {{- end }}
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
