@@ -3,6 +3,16 @@ entries:
   llama-cpp:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-05-06T22:06:44.239817254Z"
+    description: A Helm chart for deploying a llama.cpp server
+    digest: c1cfd3fe72f0986a739059f2a22d029cfeaf2247e8d9d4dcf70ec7c95bdb0847
+    name: llama-cpp
+    type: application
+    urls:
+    - https://github.com/rockofox/helm-llama-cpp/releases/download/llama-cpp-0.0.5/llama-cpp-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-05-05T21:23:43.797431217Z"
     description: A Helm chart for Kubernetes
     digest: 572ac8c5c1b4ba295247d4f4205c0e39ea40f025ccfb979d00dbbd4a24abfd9c
@@ -42,4 +52,4 @@ entries:
     urls:
     - https://github.com/rockofox/helm-llama-cpp/releases/download/turingpi-llama-cpp-0.0.2/turingpi-llama-cpp-0.0.2.tgz
     version: 0.0.2
-generated: "2025-05-05T21:23:43.797447708Z"
+generated: "2025-05-06T22:06:44.239834145Z"
